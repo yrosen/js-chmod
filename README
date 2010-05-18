@@ -1,0 +1,10 @@
+This is a simple script in Javascript, XHTML, and CSS.
+
+It was originally created to teach a friend how to use numeric chmod modes, and the basics
+of UNIX file permissions. It's a useful little script so feel free to use it for whatever
+you want.
+
+If you do use it, modify it, whatever, I'd love to hear about it! Shoot me an email at
+yudi42@gmail.com.
+
+This script is distributed under the BSD license. See the included LICENSE file for more.
