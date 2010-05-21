@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>chmod</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	<script type="text/javascript">
+		function do_chmod() {
+			var or = document.getElementById("or").checked == true ? 4 : 0;
+			var ow = document.getElementById("ow").checked == true ? 2 : 0;
+			var ox = document.getElementById("ox").checked == true ? 1 : 0;
+			var gr = document.getElementById("gr").checked == true ? 4 : 0;
+			var gw = document.getElementById("gw").checked == true ? 2 : 0;
+			var gx = document.getElementById("gx").checked == true ? 1 : 0;
+			var wr = document.getElementById("wr").checked == true ? 4 : 0;
+			var ww = document.getElementById("ww").checked == true ? 2 : 0;
+			var wx = document.getElementById("wx").checked == true ? 1 : 0;
+
+			var chmod = String(or|ow|ox) + String(gr|gw|gx) + String(wr|ww|wx);
+
+			document.getElementById("chmod").innerHTML  = chmod;
+			document.getElementById("chmod2").innerHTML = chmod;
+		}
+	</script>
+
+	<style media="screen" type="text/css">
+		* { padding: 0; margin: 0; }
+
+		body {
+			background: #F0F0F0;
+			color: #333;
+			font-family: Verdana, sans-serif;
+			font-size: 1em;
+			margin: 20px;
+		}
+
+		div.clear { clear: both; }
+
+		div#main {
+			background: white;
+			border: 8px solid #AAA;
+			margin: 0px auto;
+			padding: 8px;
+			width: 550px;
+			-moz-border-radius: 6px;
+			-khtml-border-radius: 6px;
+			-webkit-border-radius: 6px;
+		}
+
+		div#header { border-bottom: 1px solid #999; height: 60px; }
+
+		div#header div#logo {
+			font-size: 3em;
+			font-weight: bold;
+			float: left;
+			width: 200px;
+		}
+
+		div#header div#nav {
+			float: right;
+			line-height: 80px;
+			text-align: right;
+			width: 300px;
+		}
+
+		div#header div#nav a.topnav {
+			color: #888;
+			font-weight: bold;
+			margin: 3px;
+			outline: none;
+			padding: 3px 5px 3px 5px;
+			text-decoration: none;
+		}
+
+		div#header div#nav a.topnav:hover { color: #333; }
+
+		div#header div#nav a.active {
+			color: white;
+			background: #333;
+			-moz-border-radius: 6px;
+			-khtml-border-radius: 6px;
+			-webkit-border-radius: 6px;
+		}
+
+		div#header div#nav a.active:hover { color: white; }
+
+		div#chmod_table {
+			float: left;
+			margin: 5px;
+			width: 300px;
+		}
+
+		div#chmod_table div.dcell, div#chmod_table div.tcell {
+			margin: 2px;
+			height: 20px;
+			padding: 3px;
+			text-align: center;
+		}
+
+		div#chmod_table div.dcell {
+			background: #333;
+			color: white;
+			font-weight: bold;
+		}
+
+		div#chmod_table div.tcell { background: #F5F5F5; }
+
+		div#chmod_table div.col1 {
+			float: left;
+			text-align: right;
+			width: 70px;
+		}
+
+		div#chmod_table div.col2, .col3, .col4 { width: 60px; float: left; }
+
+		div#results { float: right; margin: 5px; width: 230px; }
+
+		div#chmod { color: #EB3760; font-size: 4em; }
+	</style>
+</head>
+
+<body onload="do_chmod();">
+	<div id="main">
+
+		<div id="header">
+			<div id="logo">chmod</div>
+
+			<div id="nav">
+				<a class="topnav active" href="index.html">chmod</a>
+				<a class="topnav" href="http://catcode.com/teachmod/">help</a>
+			</div>
+
+			<div class="clear"></div>
+		</div>
+
+		<div id="chmod_table">
+			<form method="post" action="">
+				<div class="table_head">
+					<div class="dcell col1"></div>
+					<div class="dcell col2">R</div>
+					<div class="dcell col3">W</div>
+					<div class="dcell col4">X</div>
+					<div class="clear"></div>
+				</div>
+
+				<div class="table_row">
+					<div class="dcell col1">Owner: </div>
+					<div class="tcell col2"><input type="checkbox" name="or" id="or" onclick="do_chmod();"/></div>
+					<div class="tcell col3"><input type="checkbox" name="ow" id="ow" onclick="do_chmod();"/></div>
+					<div class="tcell col4"><input type="checkbox" name="ox" id="ox" onclick="do_chmod();"/></div>
+					<div class="clear"></div>
+				</div>
+
+				<div class="table_row">
+					<div class="dcell col1">Group: </div>
+					<div class="tcell col2"><input type="checkbox" name="gr" id="gr" onclick="do_chmod();"/></div>
+					<div class="tcell col3"><input type="checkbox" name="gw" id="gw" onclick="do_chmod();"/></div>
+					<div class="tcell col4"><input type="checkbox" name="gx" id="gx" onclick="do_chmod();"/></div>
+					<div class="clear"></div>
+				</div>
+
+				<div class="table_row">
+					<div class="dcell col1">World: </div>
+					<div class="tcell col2"><input type="checkbox" name="wr" id="wr" onclick="do_chmod();"/></div>
+					<div class="tcell col3"><input type="checkbox" name="ww" id="ww" onclick="do_chmod();"/></div>
+					<div class="tcell col4"><input type="checkbox" name="wx" id="wx" onclick="do_chmod();"/></div>
+					<div class="clear"></div>
+				</div>
+			</form>
+		</div>
+
+		<div id="results">
+			<h3>chmod mode:</h3>
+			<div id="chmod">000</div>
+			<small><b>Example:</b> <i>chmod <span id="chmod2">000</span> myfile.txt</i></small>
+		</div>
+
+		<div class="clear"></div>
+	</div>
+</body>
+
+</html>
